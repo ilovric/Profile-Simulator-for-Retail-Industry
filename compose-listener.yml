@@ -1,0 +1,19 @@
+services:
+  listener1:
+    environment:
+      DB_USER: ihuser
+      DB_PASSWORD: ihuser
+      DB_CONNECTION_STRING: oracle1:1521/FREEPDB1
+    build:
+      context: .
+      dockerfile: ./listener/Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 300m
+        reservations:
+          cpus: '0.5'
+          memory: 200m
+    volumes:
+      - ./results:/app/results/

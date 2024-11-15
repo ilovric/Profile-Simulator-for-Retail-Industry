@@ -1,0 +1,19 @@
+services:
+  oracle1:
+    image: gvenzl/oracle-free:latest
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: sys_user_password
+      APP_USER: ihuser
+      APP_USER_PASSWORD: ihuser
+    volumes:
+      - ./db/init.sql:/container-entrypoint-initdb.d/my-init.sql:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
